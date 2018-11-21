@@ -14,20 +14,6 @@ var rdfGraph = {
       'value': 'http://example.com/chemistry',
       'type': 'uri'
     }],
-  },
-  '_:person': {
-    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': [{
-      'value': 'http://xmlns.com/foaf/0.1/Person',
-      'type': 'uri'
-    }],
-    'http://xmlns.com/foaf/0.1/firstName': [{ 'value': 'Anna', 'type': 'literal' }],
-    'http://xmlns.com/foaf/0.1/surname': [{ 'value': 'Wilder', 'type': 'literal' }]
-  },
-  'http://example.org/about2': {
-    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': [{
-      'value': 'http://xmlns.com/foaf/0.1/Document',
-      'type': 'uri'
-    }]
   }
 };
 
@@ -55,6 +41,18 @@ rdforms.bundleLoader(itemStore, bundles, function(bundles) {
   }, 'node');
   var ta = document.getElementById('output');
   var updateOutput = function() {
+	  // grab workspace URL
+	  var url = document.getElementById('workspace-url').value;
+	  console.log(url);
+	  console.log("log message");
+	  console.log(graph);
+	  var oldAbout = Object.keys(graph._graph)[0];
+	  console.log(oldAbout);
+	  if (oldAbout !== url) {
+		  Object.defineProperty(graph._graph, url, Object.getOwnPropertyDescriptor(graph._graph, oldAbout));
+		  delete graph._graph[oldAbout];
+	  }
+	  console.log(graph);
     // Export RDF/XML
     ta.value = rdfjson.converters.rdfjson2rdfxml(graph);
 
