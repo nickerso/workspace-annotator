@@ -43,17 +43,12 @@ rdforms.bundleLoader(itemStore, bundles, function(bundles) {
   var updateOutput = function() {
 	  // grab workspace URL
 	  var url = document.getElementById('workspace-url').value;
-	  console.log(url);
-	  console.log("log message");
-	  console.log(graph);
 	  var oldAbout = Object.keys(graph._graph)[0];
-	  console.log(oldAbout);
 	  if (oldAbout !== url) {
 		  Object.defineProperty(graph._graph, url, Object.getOwnPropertyDescriptor(graph._graph, oldAbout));
 		  delete graph._graph[oldAbout];
 	  }
-	  console.log(graph);
-    // Export RDF/XML
+	  // Export RDF/XML
     ta.value = rdfjson.converters.rdfjson2rdfxml(graph);
 
     // Export RDF/JSON
