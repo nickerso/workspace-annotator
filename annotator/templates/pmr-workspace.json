@@ -1,0 +1,25 @@
+{
+  "templates": [
+    {
+      "type": "group",
+      "id": "pmr:Workspace",
+      "label": "Workspace",
+      "constraints": {
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "https://models.physiomeproject.org/ns/pmr#Workspace"
+      },
+      "items": [
+        {
+			"type": "text",
+			"id": "dcat:dcterms:title",
+			"extends": "dcterms:title",
+			"cardinality": {
+				"min": 1,
+				"pref": 0
+			},
+			"nodetype": "LANGUAGE_LITERAL",
+			"label": "Title",
+			"description": "The title of the workspace"
+        }
+		]
+	}]
+}

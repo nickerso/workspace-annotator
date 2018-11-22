@@ -1,17 +1,7 @@
 var rdfGraph = {
   'http://example.org/about': {
     'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': [{
-      'value': 'http://xmlns.com/foaf/0.1/Document',
-      'type': 'uri'
-    }],
-    'http://purl.org/dc/terms/title': [{
-      'value': "Anna's Homepage",
-      'type': 'literal',
-      'lang': 'en'
-    }],
-    'http://purl.org/dc/terms/creator': [{ 'value': '_:person', 'type': 'bnode' }],
-    'http://purl.org/dc/terms/subject': [{
-      'value': 'http://example.com/chemistry',
+      'value': 'https://models.physiomeproject.org/ns/1.0/Workspace',
       'type': 'uri'
     }],
   }
@@ -27,6 +17,7 @@ const bundles = [
   ['templates/vcard.json'],
   ['templates/dcat_props.json'],
   ['templates/dcat.json'],
+  ['templates/pmr-workspace.json'],
 ];
 
 const graph = new rdfjson.Graph(rdfGraph);
@@ -35,7 +26,7 @@ rdforms.bundleLoader(itemStore, bundles, function(bundles) {
   new rdforms.Editor({
     graph,
     resource: 'http://example.org/about',
-    template: itemStore.getItem('dcat:OnlyDataset'),
+    template: itemStore.getItem('pmr:Workspace'),
     compact: false,
     includeLevel: 'optional'
   }, 'node');
