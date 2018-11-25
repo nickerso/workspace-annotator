@@ -30,6 +30,18 @@
 			}
         },
 		{	
+			"id": "pmr:keyword",
+			"property": "https://models.physiomeproject.org/ns/0.1/keyword",
+			"label": {
+				"en": "Keyword"
+			},
+			"description": {
+				"en": "Keywords characterising the type of this model."
+			},
+			"type": "text",
+			"nodetype": "LITERAL"
+		},
+		{	
 			"id": "pmr:species",
 			"property": "https://models.physiomeproject.org/ns/0.1/species",
 			"label": {
@@ -54,8 +66,8 @@
 			"nodetype": "LITERAL"
 		},
 		{	
-			"id": "pmr:cell_type",
-			"property": "https://models.physiomeproject.org/ns/0.1/cell_type",
+			"id": "pmr:cellType",
+			"property": "https://models.physiomeproject.org/ns/0.1/cellType",
 			"label": {
 				"en": "Cell type"
 			},
@@ -64,6 +76,184 @@
 			},
 			"type": "text",
 			"nodetype": "LITERAL"
+		},
+		{
+			"type": "choice",
+			"id": "pmr:modelType",
+			"property": "https://models.physiomeproject.org/ns/0.1/modelType",
+			"nodetype": "URI",
+			"label": "Model type",
+			"cardinality": {
+				"min": 1
+			},
+			"choices": [
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/ODE",
+					"label": "ODE"
+				},
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/DAE",
+					"label": "DAE"
+				},
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/Algebraic",
+					"label": "Algebraic"
+				},
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/Other",
+					"label": "Other"
+				}
+			]
+		},
+		{
+			"type": "text",
+			"id": "pmr:primaryCellml",
+			"extends": "dc:source",
+			"property": "https://models.physiomeproject.org/ns/0.1/primaryCellml",
+			"cardinality": {
+				"min": 1,
+				"pref": 0
+			},
+			"label": "Primary CellML model",
+			"description": "The location of the primary CellML model"
+        },
+		{
+			"type": "choice",
+			"id": "pmr:primaryCellmlValid",
+			"property": "https://models.physiomeproject.org/ns/0.1/primaryCellmlValid",
+			"nodetype": "URI",
+			"label": "Primary CellML valid",
+			"description": "The primary CellML model is valid, as checked using OpenCOR Raw CellML editor",
+			"cardinality": {
+				"min": 1
+			},
+			"choices": [
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/true",
+					"label": "True"
+				},
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/false",
+					"label": "False"
+				},
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/Other",
+					"label": "Other"
+				}
+			]
+		},
+		{
+			"type": "choice",
+			"id": "pmr:primaryCellmlExecutable",
+			"property": "https://models.physiomeproject.org/ns/0.1/primaryCellmlExecutable",
+			"nodetype": "URI",
+			"label": "Primary CellML executable",
+			"description": "The primary CellML model is executable, as tested by trying to simulate the model in OpenCOR",
+			"cardinality": {
+				"min": 1
+			},
+			"choices": [
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/true",
+					"label": "True"
+				},
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/false",
+					"label": "False"
+				}
+			]
+		},
+		{
+			"type": "choice",
+			"id": "pmr:primaryCellmlConfirmed",
+			"property": "https://models.physiomeproject.org/ns/0.1/primaryCellmlConfirmed",
+			"nodetype": "URI",
+			"label": "Primary CellML confirmed",
+			"description": "The primary CellML model can reproduce results as given in source literature",
+			"cardinality": {
+				"min": 1
+			},
+			"choices": [
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/true",
+					"label": "True"
+				},
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/false",
+					"label": "False"
+				},
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/Other",
+					"label": "Other"
+				}
+			]
+		},
+		{
+			"type": "choice",
+			"id": "pmr:hasSedml",
+			"property": "https://models.physiomeproject.org/ns/0.1/hasSedml",
+			"nodetype": "URI",
+			"label": "Workspace has SED-ML",
+			"description": "There are some SED-ML documents in the workspace.",
+			"cardinality": {
+				"min": 1
+			},
+			"choices": [
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/true",
+					"label": "True"
+				},
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/false",
+					"label": "False"
+				}
+			]
+		},
+		{
+			"type": "choice",
+			"id": "pmr:sedmlConfirmed",
+			"property": "https://models.physiomeproject.org/ns/0.1/sedmlConfirmed",
+			"nodetype": "URI",
+			"label": "SED-ML confirmed",
+			"description": "There is at least one SED-ML document in the workspace that can be used to reproduce a figure from the literature source.",
+			"cardinality": {
+				"min": 1
+			},
+			"choices": [
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/true",
+					"label": "True"
+				},
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/false",
+					"label": "False"
+				},
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/Other",
+					"label": "Other"
+				}
+			]
+		},
+		{
+			"type": "choice",
+			"id": "pmr:hasSemgenAnnotations",
+			"property": "https://models.physiomeproject.org/ns/0.1/hasSemgenAnnotations",
+			"nodetype": "URI",
+			"label": "Has SemGen annotations",
+			"description": "The workspace has some annotations generated using SemGen.",
+			"cardinality": {
+				"min": 1
+			},
+			"choices": [
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/true",
+					"label": "True"
+				},
+				{
+					"value": "https://models.physiomeproject.org/ns/0.1/false",
+					"label": "False"
+				}
+			]
 		}
 		]
 	}],
