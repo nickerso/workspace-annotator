@@ -41,7 +41,7 @@
 			"type": "text",
 			"nodetype": "LITERAL"
 		},
-		{	
+		{
 			"id": "pmr:organ",
 			"property": "https://models.physiomeproject.org/ns/0.1/organ",
 			"label": {

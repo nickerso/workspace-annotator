@@ -7,11 +7,63 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="../dist/bmd.rdforms.js"></script>
     <script src="../node_modules/rdfjson/dist/rdfjson.js"></script>
+	<script>
+		function annotateWorkspace(url) {
+			console.log("annotateWorkspace: " + url);
+			
+			var rdfGraph = {};
+			rdfGraph[url] = {
+				'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': [{
+					'value': 'https://models.physiomeproject.org/ns/1.0/workspace',
+					'type': 'uri'
+					}],
+			};
+
+			const itemStore = new rdforms.ItemStore();
+
+			const bundles = [
+			  ['templates/dc.json'],
+			  ['templates/dcterms.json'],
+			  ['templates/foaf.json'],
+			  ['templates/skos.json'],
+			  ['templates/adms.json'],
+			  ['templates/vcard.json'],
+			  ['templates/dcat_props.json'],
+			  ['templates/dcat.json'],
+			  ['templates/pmr-workspace.json'],
+			];
+
+			const graph = new rdfjson.Graph(rdfGraph);
+
+			rdforms.bundleLoader(itemStore, bundles, function(bundles) {
+			  new rdforms.Editor({
+				graph,
+				resource: url,
+				template: itemStore.getItem('pmr:workspace'),
+				compact: false,
+				includeLevel: 'optional'
+			  }, 'node');
+			  var ta = document.getElementById('output');
+			  var updateOutput = function() {
+				  // Export RDF/XML
+				ta.value = rdfjson.converters.rdfjson2rdfxml(graph);
+
+				// Export RDF/JSON
+				// ta.value = JSON.stringify(graph.exportRDFJSON(), null, "  ");
+			  };
+			  updateOutput();
+			  graph.onChange = updateOutput;
+			});
+
+		}
+	</script>
 </head>
 <body>
 <h1>PMR Workspace Annotator</h1>
 <div class="workspace-url">
-	<b>Workspace URL:</b>&nbsp;<input type="text" id="workspace-url" width="128"/>
+	<b>Workspace URL:</b>&nbsp;<input type="text" style="width: 25em;" id="workspace-url" width="128"/>
+	<br/>
+	<input type="button" onClick="annotateWorkspace(document.getElementById('workspace-url').value)" value="Annotate Workspace"/>
 </div>
 <div class="twocol">
     <div id="node" class="col1"></div>
