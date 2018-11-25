@@ -10,6 +10,7 @@ var rdfGraph = {
 const itemStore = new rdforms.ItemStore();
 
 const bundles = [
+  ['templates/dc.json'],
   ['templates/dcterms.json'],
   ['templates/foaf.json'],
   ['templates/skos.json'],

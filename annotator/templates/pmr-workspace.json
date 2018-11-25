@@ -2,10 +2,10 @@
   "templates": [
     {
       "type": "group",
-      "id": "pmr:Workspace",
+      "id": "pmr:workspace",
       "label": "Workspace",
       "constraints": {
-        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "https://models.physiomeproject.org/ns/pmr#Workspace"
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "https://models.physiomeproject.org/ns/0.1/workspace"
       },
       "items": [
         {
@@ -19,7 +19,54 @@
 			"nodetype": "LANGUAGE_LITERAL",
 			"label": "Title",
 			"description": "The title of the workspace"
-        }
+        },
+		{
+			"type": "text",
+			"id": "pmr:source",
+			"extends": "dc:source",
+			"cardinality": {
+				"min": 1,
+				"pref": 0
+			}
+        },
+		{	
+			"id": "pmr:species",
+			"property": "https://models.physiomeproject.org/ns/0.1/species",
+			"label": {
+				"en": "Species"
+			},
+			"description": {
+				"en": "A species identified in the source"
+			},
+			"type": "text",
+			"nodetype": "LITERAL"
+		},
+		{	
+			"id": "pmr:organ",
+			"property": "https://models.physiomeproject.org/ns/0.1/organ",
+			"label": {
+				"en": "Organ"
+			},
+			"description": {
+				"en": "If there is a specific organ associated with this workspace."
+			},
+			"type": "text",
+			"nodetype": "LITERAL"
+		},
+		{	
+			"id": "pmr:cell_type",
+			"property": "https://models.physiomeproject.org/ns/0.1/cell_type",
+			"label": {
+				"en": "Cell type"
+			},
+			"description": {
+				"en": "If there is a specific cell type associated with this workspace."
+			},
+			"type": "text",
+			"nodetype": "LITERAL"
+		}
 		]
-	}]
+	}],
+	"scope": "pmr",
+	"namespace": "https://models.physiomeproject.org/ns/0.1/"
 }
